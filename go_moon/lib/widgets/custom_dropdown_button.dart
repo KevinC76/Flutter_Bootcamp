@@ -4,7 +4,7 @@ class CustomDropDownButtonClass extends StatelessWidget {
   List<String> values;
   double width;
 
-  CustomDropDownButtonClass({required this.values, required this.width});
+  CustomDropDownButtonClass({super.key, required this.values, required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CustomDropDownButtonClass extends StatelessWidget {
         value: values.first,
         onChanged: (_) {},
         items: values.map((e) {
-          return DropdownMenuItem(child: Text(e), value: e);
+          return DropdownMenuItem(value: e, child: Text(e));
         }).toList(),
         underline: Container(),
         dropdownColor: const Color.fromRGBO(53, 53, 53, 1.0),

@@ -4,7 +4,7 @@ import 'package:go_moon/widgets/custom_dropdown_button.dart';
 class HomePage extends StatelessWidget {
   late double _deviceHeight, _deviceWidth;
 
-  HomePage({Key? key}) : super(key: key);
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _bookRideWidget() {
-    return Container(
+    return SizedBox(
       height: _deviceHeight * 0.25,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
