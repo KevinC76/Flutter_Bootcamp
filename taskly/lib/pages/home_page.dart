@@ -31,9 +31,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: _taskList(),
+      floatingActionButton: _addTaskButton(),
     );
   }
 }
+
+
 
 Widget _taskList() {
   return ListView(
@@ -75,3 +78,11 @@ Widget _taskList() {
   );
 }
 
+Widget _addTaskButton() {
+  return FloatingActionButton(
+    onPressed: () {
+      print("Pressed");
+    },
+    child: Icon(Icons.add),
+  );
+}
