@@ -1,5 +1,6 @@
 import "dart:convert";
 
+import "package:coin_cap/pages/detail_page.dart";
 import "package:coin_cap/services/http_service.dart";
 import "package:flutter/material.dart";
 import "package:get_it/get_it.dart";
@@ -13,6 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   double? _deviceHeight, _deviceWidth;
+  String?  _selectedCoin = 'bitcoin';
 
   HTTPService? _http;
 
@@ -44,7 +46,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _selectedCoinDropdown() {
-    List<String> _coins = ["bitcoin"];
+    List<String> _coins = [
+      "bitcoin",
+      "ethereum",
+      "tether",
+      "cardano",
+      "ripple"
+    ];
     List<DropdownMenuItem<String>> _items = _coins
         .map((e) => DropdownMenuItem(
               value: e,
@@ -59,9 +67,13 @@ class _HomePageState extends State<HomePage> {
             ))
         .toList();
     return DropdownButton(
-      value: _coins.first,
+      value: _selectedCoin != null ? _selectedCoin :_coins.first,
       items: _items,
-      onChanged: (_value) {},
+      onChanged: (_value) {
+        setState(() {
+          _selectedCoin = _value;
+        });
+      },
       dropdownColor: const Color.fromRGBO(83, 88, 206, 1.0),
       iconSize: 30,
       icon: const Icon(
@@ -74,7 +86,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _dataWidgetFunction() {
     return FutureBuilder(
-      future: _http!.get("/coins/bitcoin"),
+      future: _http!.get("/coins/${_selectedCoin}"),
       builder: (BuildContext _context, AsyncSnapshot _snapshot) {
         if (_snapshot.hasData) {
           Map _data = jsonDecode(
@@ -83,13 +95,26 @@ class _HomePageState extends State<HomePage> {
           num _usdPrice = _data["market_data"]["current_price"]["usd"];
           num _change24h = _data['market_data']['price_change_percentage_24h'];
           String _imgURL = _data["image"]["large"];
+          Map _allPrice = _data['market_data']['current_price'];
           return Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _coinImageWidget(
-                _imgURL,
+              GestureDetector(
+                onDoubleTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext _context) {
+                        return DetailsPage(rates: _allPrice,);
+                      },
+                    ),
+                  );
+                },
+                child: _coinImageWidget(
+                  _imgURL,
+                ),
               ),
               _currentPriceWidget(_usdPrice),
               _percentageChangeWidget(_change24h),
