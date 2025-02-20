@@ -20,14 +20,22 @@ class GamePage extends StatelessWidget {
   Widget _buildUI() {
     return Builder(builder: (_context) {
       _pageProvider = _context.watch<GamePageProvider>();
-      return Scaffold(
-        body: SafeArea(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: _deviceHeight! * 0.05),
-            child: _gameUI(),
+      if (_pageProvider!.questions != null) {
+        return Scaffold(
+          body: SafeArea(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: _deviceHeight! * 0.05),
+              child: _gameUI(),
+            ),
           ),
-        ),
-      );
+        );
+      } else {
+        return Center(
+          child: CircularProgressIndicator(
+            color: Colors.white,
+          ),
+        );
+      }
     });
   }
 
@@ -53,7 +61,7 @@ class GamePage extends StatelessWidget {
 
   Widget _questionTextWidget() {
     return Text(
-      "Test Question 1, Nothing to display yet",
+      _pageProvider!.getCurrentQuestionText(),
       style: TextStyle(
         color: Colors.white,
         fontSize: 25,
