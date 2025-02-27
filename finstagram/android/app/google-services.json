@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "689168570204",
+    "project_id": "finstagram-udemy-bd71b",
+    "storage_bucket": "finstagram-udemy-bd71b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689168570204:android:5baf6363e5c987ac2e1399",
+        "android_client_info": {
+          "package_name": "com.example.finstagram"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaKQM0NGQTJH1LwderYidFJ-vbqzK3rRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
