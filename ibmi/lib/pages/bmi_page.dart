@@ -138,6 +138,7 @@ class _BMIPageState extends State<BMIPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CupertinoButton(
+                key: const Key('weight_minus'),
                 padding: EdgeInsets.zero,
                 onPressed: () {
                   setState(() {
@@ -150,6 +151,7 @@ class _BMIPageState extends State<BMIPage> {
                 ),
               ),
               CupertinoButton(
+                key: const Key('weight_plus'),
                 padding: EdgeInsets.zero,
                 onPressed: () {
                   setState(() {
@@ -170,7 +172,7 @@ class _BMIPageState extends State<BMIPage> {
 
   Widget _heightSelectContainer() {
     return InfoCard(
-      height: _deviceHeight! * 0.15,
+      height: _deviceHeight! * 0.18,
       width: _deviceWidth! * 0.90,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
