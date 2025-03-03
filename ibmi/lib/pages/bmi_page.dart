@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:developer' as developer;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -308,6 +309,7 @@ class _BMIPageState extends State<BMIPage> {
         _status,
       ],
     );
-    print("result saved!");
+    // print("result saved!");
+    developer.log("\x1B[32mResult Saved!\x1B[0m");
   }
 }
