@@ -16,7 +16,7 @@ class BMIPage extends StatefulWidget {
 class _BMIPageState extends State<BMIPage> {
   double? _deviceHeight, _deviceWidth;
 
-  int _age = 17, _weight = 160, _height = 70, _gender = 0;
+  int _age = 25, _weight = 160, _height = 70, _gender = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +79,7 @@ class _BMIPageState extends State<BMIPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CupertinoButton(
+                key: Key('age_minus'),
                 padding: EdgeInsets.zero,
                 onPressed: () {
                   setState(() {
@@ -91,6 +92,7 @@ class _BMIPageState extends State<BMIPage> {
                 ),
               ),
               CupertinoButton(
+                key: Key('age_plus'),
                 padding: EdgeInsets.zero,
                 onPressed: () {
                   setState(() {
@@ -247,6 +249,7 @@ class _BMIPageState extends State<BMIPage> {
     return Container(
       height: _deviceHeight! * 0.06,
       child: CupertinoButton.filled(
+        key: Key('calculate_button'),
         child: const Text('Calculate BMI'),
         onPressed: () {
           if (_height > 0 && _weight > 0 && _age > 0) {
